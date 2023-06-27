@@ -23,30 +23,33 @@ public class File {
     }
 
     public static void saveScore(int score) {
-        String insertQuery = "INSERT INTO score (id, score) VALUES (  ?, ?)";
+        if (score != 0) {
+            String insertQuery = "INSERT INTO score (id, score) VALUES (  ?, ?)";
 
-        try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
-             PreparedStatement statement = connection.prepareStatement(insertQuery)) {
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM score");
-            int max = 0;
-            while (resultSet.next()) {
-                max = resultSet.getInt(1);
+            try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
+                 PreparedStatement statement = connection.prepareStatement(insertQuery)) {
+                ResultSet resultSet = statement.executeQuery("SELECT * FROM score");
+                int max = 0;
+                while (resultSet.next()) {
+                    max = resultSet.getInt(1);
+                }
+                max += 1;
+                statement.setInt(1, max);
+                statement.setInt(2, score);
+                statement.executeUpdate();
+
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-            max += 1;
-            statement.setInt(1, max);
-            statement.setInt(2, score);
-            statement.executeUpdate();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
+
     }
 
     public static ArrayList<Integer> loadScore() {
         ArrayList<Integer> allScores = new ArrayList<>();
         try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASS); Statement statement = connection.createStatement()) {
 
-            String sql = "SELECT score FROM chickens ORDER BY score DESC";
+            String sql = "SELECT * FROM `score` ORDER BY `score`.`score` DESC";
             ResultSet rs = statement.executeQuery(sql);
 
             while (rs.next()) {

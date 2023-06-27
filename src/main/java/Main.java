@@ -20,6 +20,7 @@ public class Main extends PApplet {
     boolean gameOver;
     public static boolean inGame;
     boolean winGame;
+    boolean submitchange;
     public static boolean helpCent;
     public static boolean scoreList;
     boolean isShoot;
@@ -54,6 +55,7 @@ public class Main extends PApplet {
         winGame = false;
         helpCent = false;
         scoreList = false;
+        submitchange = false;
 
         speedFly = 1;
         killedChicken = 0;
@@ -97,9 +99,9 @@ public class Main extends PApplet {
                     }
                     if (playerLife <= 0) {
                         gameOver = true;
-
                         inGame = false;
-                        loseScore = frameCount / 5;
+                        loseScore = frameCount / 5 + killedChicken * 15;
+
                     }
 
                 }
@@ -127,8 +129,11 @@ public class Main extends PApplet {
             textSize(32);
             text("Life: " + playerLife, 10, 40);
             text("score: " + (killedChicken * 15 + frameCount / 5), 10, 100);
+        } else if (!submitchange) {
+            File.saveScore(loseScore);
+            submitchange = true;
         } else if (!onMenu && gameOver) {
-            gameOverWindow(killedChicken * 15 + loseScore);
+            gameOverWindow(loseScore);
         } else if (!onMenu && helpCent) {
             helpCenter();
         } else if (!onMenu && winGame) {
@@ -139,11 +144,12 @@ public class Main extends PApplet {
     }
 
     public void gameOverWindow(int score) {
+
         textAlign(3, 3);
 
-        PImage gameOver = loadImage("gameOver.png");
+        PImage gameOverPIc = loadImage("gameOver.png");
 
-        image(gameOver, 250, 150, 400, 100);
+        image(gameOverPIc, 250, 150, 400, 100);
 
         text("score :" + score, WINDOW_WIDTH / 2, 300);
 
@@ -151,6 +157,8 @@ public class Main extends PApplet {
         text("2 - Exit", 410, 425);
         if (mousePressed) {
             if (mouseX > 367 && mouseX < 600 && mouseY > 350 && mouseY < 390) {
+                scoreList = true;
+                gameOver = false;
                 scoreList();
             } else if (mouseX > 367 && mouseX < 500 && mouseY > 410 && mouseY < 450) {
                 exit();
@@ -191,9 +199,9 @@ public class Main extends PApplet {
     public void winnerWindow(int score) {
         textAlign(3, 3);
 
-        PImage gameOver = loadImage("CI1RLogo.png");
+        PImage gameOverPic = loadImage("CI1RLogo.png");
 
-        image(gameOver, 250, 50, 400, 200);
+        image(gameOverPic, 250, 50, 400, 200);
 
         text("score :" + score, WINDOW_WIDTH / 2, 300);
 
@@ -201,6 +209,8 @@ public class Main extends PApplet {
         text("2 - Exit", 410, 425);
         if (mousePressed) {
             if (mouseX > 367 && mouseX < 600 && mouseY > 350 && mouseY < 390) {
+                scoreList = true;
+                winGame = false;
                 scoreList();
             } else if (mouseX > 367 && mouseX < 500 && mouseY > 410 && mouseY < 450) {
                 exit();
@@ -210,10 +220,26 @@ public class Main extends PApplet {
     }
 
     public void scoreList() {
-        textAlign(3,3);
-        text("Score List",WINDOW_WIDTH/2,150);
-        textAlign(1,1);
 
+        textAlign(3, 3);
+        text("Score List", WINDOW_WIDTH / 2, 150);
+        textAlign(1, 1);
+        int i = 1;
+        int y = 250;
+        for (int num : File.loadScore()) {
+            if (i < 6) {
+                text(i + ". ", 100, y);
+                text(num, 150, y);
+                i++;
+                y += 45;
+            }
+        }
+        text("Exit", 410, 625);
+        if (mousePressed) {
+            if (mouseX > 367 && mouseX < 500 && mouseY > 610 && mouseY < 650) {
+                exit();
+            }
+        }
     }
 
     @Override
