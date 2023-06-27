@@ -2,7 +2,7 @@ import processing.core.*;
 
 import java.util.ArrayList;
 
-public class Ammo extends PApplet {
+public class Ammo extends PApplet implements BulletInterfaces{
     int bulletX;
     int bulletY;
     PImage ammoFire;
