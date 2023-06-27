@@ -147,6 +147,14 @@ public class Main extends PApplet {
         }
     }
 
+    @Override
+    public void keyPressed() {
+        if (!onMenu) if (keyCode == 32) speedFly += 1;
+        else {
+
+        }
+    }
+
     public void checkCrashed(Chicken chicken1, Ammo ammo1) {
         float leftAmmo = ammo1.bulletX;
         float rightAmmo = ammo1.bulletX + 32;
