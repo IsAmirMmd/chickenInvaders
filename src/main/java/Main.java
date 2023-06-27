@@ -100,7 +100,40 @@ public class Main extends PApplet {
         }
     }
 
+    public void checkCrashed(Chicken chicken1, Ammo ammo1) {
+        float leftAmmo = ammo1.bulletX;
+        float rightAmmo = ammo1.bulletX + 32;
+        float topAmmo = ammo1.bulletY;
+        float bottomAmmo = ammo1.bulletY + 32;
 
+        float leftChick = chicken1.chickenX;
+        float rightChick = chicken1.chickenX + chicken1.getChickenWidth(); // width is 50
+        float topChick = chicken1.chickenY;
+        float bottomChick = chicken1.chickenY + chicken1.getChickenHeight(); // height is 50
+
+        if (topAmmo >= 0 && topAmmo <= 600 && leftAmmo >= leftChick && leftAmmo <= rightChick && topAmmo >= topChick && topAmmo <= bottomChick) {
+            chicken1.setChickenLife(chicken1.getChickenLife() - 1);
+
+            if (chicken1.getChickenLife() == 0) {
+                chicken1.setChickenLife(0);
+                chicken1.setChickenY(800);
+                chicken1.setChickenX(-200);
+                chicken1.setChickenImage(null);
+                killedChicken += 1;
+            }
+            if (chicken1.getChickenLife() == 0 && chicken1.getChickenWidth() == 350) {
+                loseScore = frameCount / 5 + killedChicken * 15;
+                inGame = false;
+                winGame = true;
+
+            }
+
+            ammo1.setAmmoFire(null);
+            ammo1.setBulletX(-200);
+            ammo1.setBulletY(800);
+        }
+
+    }
     public static void main(String[] args) {
         PApplet.main("Main");
 
