@@ -151,7 +151,7 @@ public class Main extends PApplet {
         text("2 - Exit", 410, 425);
         if (mousePressed) {
             if (mouseX > 367 && mouseX < 600 && mouseY > 350 && mouseY < 390) {
-//                score list
+                scoreList();
             } else if (mouseX > 367 && mouseX < 500 && mouseY > 410 && mouseY < 450) {
                 exit();
             }
@@ -193,7 +193,7 @@ public class Main extends PApplet {
 
         PImage gameOver = loadImage("CI1RLogo.png");
 
-        image(gameOver, 250, 150, 400, 200);
+        image(gameOver, 250, 50, 400, 200);
 
         text("score :" + score, WINDOW_WIDTH / 2, 300);
 
@@ -201,10 +201,8 @@ public class Main extends PApplet {
         text("2 - Exit", 410, 425);
         if (mousePressed) {
             if (mouseX > 367 && mouseX < 600 && mouseY > 350 && mouseY < 390) {
-                text("test-score", 100, 100);
-//                score list
+                scoreList();
             } else if (mouseX > 367 && mouseX < 500 && mouseY > 410 && mouseY < 450) {
-                text("exit", 152, 200);
                 exit();
             }
         }
