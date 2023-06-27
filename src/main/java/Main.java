@@ -87,11 +87,11 @@ public class Main extends PApplet {
                     }
                 }
                 if (chicken1.getChickenY() <= 600 && chicken1.getChickenY() >= 0) {
-                    if (chicken1.getChickenY() > 520 && chicken1.getChickenWidth() == 350) {
+                    if (chicken1.getChickenY() + chicken1.getChickenHeight() > 520 && chicken1.getChickenWidth() == 350) {
                         chicken1.setChickenY(800);
                         chicken1.setChickenX(-200);
                         playerLife = 0;
-                    } else if (chicken1.getChickenY() > 520) {
+                    } else if (chicken1.getChickenY() + chicken1.getChickenHeight() > 520) {
                         chicken1.setChickenY(800);
                         chicken1.setChickenX(-200);
                         playerLife -= 1;
@@ -289,7 +289,7 @@ public class Main extends PApplet {
                 killedChicken += 1;
             }
             if (chicken1.getChickenLife() == 0 && chicken1.getChickenWidth() == 350) {
-                loseScore = frameCount / 5 + killedChicken * 15;
+                loseScore = frameCount / 5 + killedChicken * 15 + 300;
                 inGame = false;
                 winGame = true;
 
