@@ -280,7 +280,10 @@ public class Main extends PApplet {
 
         if (topAmmo >= 0 && topAmmo <= 600 && leftAmmo >= leftChick && leftAmmo <= rightChick && topAmmo >= topChick && topAmmo <= bottomChick) {
             chicken1.setChickenLife(chicken1.getChickenLife() - 1);
-
+            if (chicken1.getChickenLife() == 1 && chicken1.getChickenWidth() == 50) {
+                PImage damagedChicken = loadImage("bird2-sec.png");
+                chicken1.setChickenImage(damagedChicken);
+            }
             if (chicken1.getChickenLife() == 0) {
                 chicken1.setChickenLife(0);
                 chicken1.setChickenY(800);
