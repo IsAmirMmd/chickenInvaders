@@ -133,6 +133,8 @@ public class Main extends PApplet {
             helpCenter();
         } else if (!onMenu && winGame) {
             winnerWindow(loseScore);
+        } else if (!onMenu && scoreList) {
+            scoreList();
         }
     }
 
@@ -207,6 +209,10 @@ public class Main extends PApplet {
             }
         }
         textAlign(1, 1);
+    }
+
+    public void scoreList() {
+
     }
 
     @Override
