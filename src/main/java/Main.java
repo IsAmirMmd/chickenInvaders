@@ -129,8 +129,11 @@ public class Main extends PApplet {
             text("score: " + (killedChicken * 15 + frameCount / 5), 10, 100);
         } else if (!onMenu && gameOver) {
             gameOverWindow(killedChicken * 15 + loseScore);
+        } else if (!onMenu && helpCent) {
+            helpCenter();
         }
     }
+
     public void gameOverWindow(int score) {
         textAlign(3, 3);
 
@@ -150,6 +153,35 @@ public class Main extends PApplet {
             }
         }
         textAlign(1, 1);
+    }
+
+    public void helpCenter() {
+        textAlign(3, 3);
+        textSize(64);
+        text("Help Center", WINDOW_WIDTH / 2, 100);
+        textAlign(1, 1);
+        textSize(22);
+        text("1- for shoot press left/right click", 200, 200);
+        text("2- for increase speed press space", 200, 250);
+        text("3- if you don't beat boss you will lose game", 200, 300);
+        text("4- we have two type of bird in this game : ", 200, 350);
+        text("       -- the green one have to shoot two time", 200, 400);
+        text("       -- the black one have to shoot one time", 200, 450);
+
+        PImage chickenImage = loadImage("bird1.png");
+        PImage chickenImage2 = loadImage("bird2.png");
+        image(chickenImage, 200, 490, 64, 64);
+        image(chickenImage2, 300, 490, 64, 64);
+
+        text("back to menu", 200, 600);
+        textSize(20);
+        if (mousePressed) {
+            if (mouseX > 200 && mouseX < 350 && mouseY > 570 && mouseY < 620) {
+                helpCent = false;
+                onMenu = true;
+            }
+        }
+
     }
 
     @Override
