@@ -1,5 +1,16 @@
-﻿# chickenInvaders
+﻿# chicken Invaders
+ 
+ Chicken Invaders is a classic arcade-style shoot 'em up game where you play as a spaceship pilot defending Earth from a horde of invading chickens.
+
+The gameplay involves dodging enemy fire and shooting down waves of chickens across various levels, each with unique challenges and bosses.
+
+As you progress through the game, you can collect power-ups to upgrade your weapons and increase your chances of survival.
+
+The game is known for its humorous storyline, quirky characters, and addictive gameplay, making it a fun and entertaining experience for players of all ages.
+
+Overall, Chicken Invaders is a great choice for anyone looking for a fun and challenging arcade game with a unique twist.
 the game that you have to shoot the chickens with rocket that is in control by mouse pointer
+
 we have menu with some option ...
 
 ![mainMenu](https://github.com/IsAmirMmd/chickenInvaders/assets/123959325/bd7ab00e-08cd-4ba3-ae9d-2aa6becb6abe)
