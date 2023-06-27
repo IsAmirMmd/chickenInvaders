@@ -9,6 +9,8 @@ public class Main extends PApplet {
     // Constants
     final int WINDOW_WIDTH = 900;
     final int WINDOW_HEIGHT = 700;
+    final Rocket rocket = new Rocket();
+
     final Chicken chicken = new Chicken(null, 0, 0, 0);
 
 
@@ -32,6 +34,8 @@ public class Main extends PApplet {
         pro = this;
 
         chicken.makeChicken();
+        rocket.rocketPos();
+
 
         gameBG = loadImage("universe-bg.jpg");
 
