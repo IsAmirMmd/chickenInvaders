@@ -210,6 +210,9 @@ public class Main extends PApplet {
     }
 
     public void scoreList() {
+        textAlign(3,3);
+        text("Score List",WINDOW_WIDTH/2,150);
+        textAlign(1,1);
 
     }
 
