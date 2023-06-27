@@ -15,7 +15,6 @@ public class Main extends PApplet {
     final Ammo ammo = new Ammo(null, 0, 0);
 
 
-
     //    variables
     public static boolean onMenu;
     boolean gameOver;
@@ -23,11 +22,15 @@ public class Main extends PApplet {
     boolean winGame;
     public static boolean helpCent;
     public static boolean scoreList;
+    boolean isShoot;
+    int killedChicken;
+    int speedFly;
+    int loseScore = 0;
+
     PImage gameBG;
 
     public static ArrayList<Chicken> chickenArrayList = new ArrayList<>();
     public static ArrayList<Ammo> ammoArrayList = new ArrayList<>();
-
 
 
     public void settings() {
@@ -49,6 +52,9 @@ public class Main extends PApplet {
         winGame = false;
         helpCent = false;
         scoreList = false;
+
+        speedFly = 1;
+        killedChicken = 0;
     }
 
     public void draw() {
@@ -57,8 +63,44 @@ public class Main extends PApplet {
         if (onMenu) {
             Menu.mouseCur();
             Menu.menuOption();
+        } else if (!onMenu && inGame) {
+            rocket.showRocket();
+            chicken.showChicken();
+            chicken.moveChicken(speedFly);
+
+            if (isShoot) {
+                if (frameCount % 5 == 0) {
+                    ammo.fireAmmo();
+                    Ammo.ammoAmount -= 1;
+                    if (Ammo.ammoAmount % 20 == 0) {
+                        isShoot = false;
+                    }
+                }
+            }
+
+            ammo.showAmmo();
+            ammo.moveAmmo(5);
         }
     }
+
+    @Override
+    public void mousePressed() {
+        if (!onMenu) isShoot = true;
+        else {
+
+        }
+    }
+
+
+    @Override
+    public void mouseReleased() {
+        if (!onMenu) isShoot = false;
+        else {
+
+        }
+    }
+
+
     public static void main(String[] args) {
         PApplet.main("Main");
 
