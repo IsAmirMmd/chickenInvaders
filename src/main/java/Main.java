@@ -127,7 +127,29 @@ public class Main extends PApplet {
             textSize(32);
             text("Life: " + playerLife, 10, 40);
             text("score: " + (killedChicken * 15 + frameCount / 5), 10, 100);
+        } else if (!onMenu && gameOver) {
+            gameOverWindow(killedChicken * 15 + loseScore);
         }
+    }
+    public void gameOverWindow(int score) {
+        textAlign(3, 3);
+
+        PImage gameOver = loadImage("gameOver.png");
+
+        image(gameOver, 250, 150, 400, 100);
+
+        text("score :" + score, WINDOW_WIDTH / 2, 300);
+
+        text("1 - Score List", WINDOW_WIDTH / 2, 360);
+        text("2 - Exit", 410, 425);
+        if (mousePressed) {
+            if (mouseX > 367 && mouseX < 600 && mouseY > 350 && mouseY < 390) {
+//                score list
+            } else if (mouseX > 367 && mouseX < 500 && mouseY > 410 && mouseY < 450) {
+                exit();
+            }
+        }
+        textAlign(1, 1);
     }
 
     @Override
