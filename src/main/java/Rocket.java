@@ -1,6 +1,6 @@
 import processing.core.*;
 
-public class Rocket extends PApplet {
+public class Rocket extends PApplet implements RocketInterfaces {
     final int GUN_WIDTH = 50;
     final int GUN_HEIGHT = 50;
 
