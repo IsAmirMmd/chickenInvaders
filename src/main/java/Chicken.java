@@ -66,6 +66,7 @@ public class Chicken extends PApplet {
                 Chicken boss = new Chicken(chickenImage, 275, speedY, 30);
                 boss.setChickenWidth(350);
                 boss.setChickenHeight(350);
+                Main.speedFly = 1;
                 Main.chickenArrayList.add(boss);
             }
         }

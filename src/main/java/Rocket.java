@@ -14,7 +14,7 @@ public class Rocket extends PApplet {
 
     public void rocketPos() {
         gunX = (500 - GUN_WIDTH) / 2;
-        gunY = 520;
+        gunY = 550;
     }
 
     public void showRocket() {

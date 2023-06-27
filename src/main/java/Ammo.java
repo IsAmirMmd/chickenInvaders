@@ -16,7 +16,7 @@ public class Ammo extends PApplet {
 
     public void fireAmmo() {
         ammoFire = Main.pro.loadImage("ammo.png");
-        Main.ammoArrayList.add(new Ammo(ammoFire, Main.pro.mouseX - 16, 520));
+        Main.ammoArrayList.add(new Ammo(ammoFire, Main.pro.mouseX - 16, 550));
     }
 
     public void showAmmo() {

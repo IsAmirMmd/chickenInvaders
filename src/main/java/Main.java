@@ -25,7 +25,7 @@ public class Main extends PApplet {
     public static boolean scoreList;
     boolean isShoot;
     int killedChicken;
-    int speedFly;
+    public static int speedFly;
     int loseScore = 0;
     int playerLife;
 
@@ -87,11 +87,11 @@ public class Main extends PApplet {
                     }
                 }
                 if (chicken1.getChickenY() <= 600 && chicken1.getChickenY() >= 0) {
-                    if (chicken1.getChickenY() + chicken1.getChickenHeight() > 520 && chicken1.getChickenWidth() == 350) {
+                    if (chicken1.getChickenY() + chicken1.getChickenHeight() > 550 && chicken1.getChickenWidth() == 350) {
                         chicken1.setChickenY(800);
                         chicken1.setChickenX(-200);
                         playerLife = 0;
-                    } else if (chicken1.getChickenY() + chicken1.getChickenHeight() > 520) {
+                    } else if (chicken1.getChickenY() + chicken1.getChickenHeight() > 550) {
                         chicken1.setChickenY(800);
                         chicken1.setChickenX(-200);
                         playerLife -= 1;
