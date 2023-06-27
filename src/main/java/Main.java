@@ -1,6 +1,8 @@
 import processing.core.PApplet;
 import processing.core.PImage;
+import processing.sound.*;
 
+import java.util.*;
 import java.util.ArrayList;
 
 public class Main extends PApplet {
@@ -28,6 +30,7 @@ public class Main extends PApplet {
     public static int speedFly;
     int loseScore = 0;
     int playerLife;
+    public SoundFile gameSound;
 
 
     PImage gameBG;
@@ -46,7 +49,7 @@ public class Main extends PApplet {
         chicken.makeChicken();
         rocket.rocketPos();
 
-
+        gameSound = new SoundFile(this, "game.wav");
         gameBG = loadImage("universe-bg.jpg");
 
         onMenu = true;
@@ -64,7 +67,7 @@ public class Main extends PApplet {
 
     public void draw() {
         background(gameBG);
-
+        gameSound.play();
         if (onMenu) {
             Menu.mouseCur();
             Menu.menuOption();
