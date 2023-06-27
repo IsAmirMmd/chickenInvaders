@@ -15,7 +15,6 @@ public class Main extends PApplet {
     final int PLAYER_LIFE = 4;
 
 
-
     //    variables
     public static boolean onMenu;
     boolean gameOver;
@@ -67,6 +66,7 @@ public class Main extends PApplet {
         if (onMenu) {
             Menu.mouseCur();
             Menu.menuOption();
+            frameCount = 0;
         } else if (!onMenu && inGame) {
             rocket.showRocket();
             chicken.showChicken();
@@ -189,6 +189,7 @@ public class Main extends PApplet {
         }
 
     }
+
     public static void main(String[] args) {
         PApplet.main("Main");
 
