@@ -10,9 +10,10 @@ public class Main extends PApplet {
     final int WINDOW_WIDTH = 900;
     final int WINDOW_HEIGHT = 700;
     final Rocket rocket = new Rocket();
-
     final Chicken chicken = new Chicken(null, 0, 0, 0);
     final Ammo ammo = new Ammo(null, 0, 0);
+    final int PLAYER_LIFE = 4;
+
 
 
     //    variables
@@ -26,6 +27,8 @@ public class Main extends PApplet {
     int killedChicken;
     int speedFly;
     int loseScore = 0;
+    int playerLife;
+
 
     PImage gameBG;
 
@@ -55,6 +58,7 @@ public class Main extends PApplet {
 
         speedFly = 1;
         killedChicken = 0;
+        playerLife = PLAYER_LIFE;
     }
 
     public void draw() {
@@ -68,6 +72,39 @@ public class Main extends PApplet {
             chicken.showChicken();
             chicken.moveChicken(speedFly);
 
+            for (Chicken chicken1 : chickenArrayList) {
+                if (chicken1.getChickenWidth() == 350) {
+                    if (chicken1.getChickenY() <= 700 && chicken1.getChickenY() >= -350) {
+                        textAlign(3, 3);
+                        if (chicken1.getChickenY() <= 350 && chicken1.getChickenY() >= -350)
+                            text("WELCOME TO BOSS LEVEL", 450, 350);
+                        textAlign(1, 1);
+                        textSize(32);
+                        text("BOSS Life : " + chicken1.getChickenLife(), 710, 40);
+                    } else {
+                    }
+                }
+                if (chicken1.getChickenY() <= 600 && chicken1.getChickenY() >= 0) {
+                    if (chicken1.getChickenY() > 520 && chicken1.getChickenWidth() == 350) {
+                        chicken1.setChickenY(800);
+                        chicken1.setChickenX(-200);
+                        playerLife = 0;
+                    } else if (chicken1.getChickenY() > 520) {
+                        chicken1.setChickenY(800);
+                        chicken1.setChickenX(-200);
+                        playerLife -= 1;
+                        break;
+                    }
+                    if (playerLife <= 0) {
+                        gameOver = true;
+
+                        inGame = false;
+                        loseScore = frameCount / 5;
+                    }
+
+                }
+            }
+
             if (isShoot) {
                 if (frameCount % 5 == 0) {
                     ammo.fireAmmo();
@@ -77,9 +114,19 @@ public class Main extends PApplet {
                     }
                 }
             }
+            if (frameCount % 5 == 0) for (Chicken chicken1 : chickenArrayList) {
+                for (Ammo ammo1 : ammoArrayList) {
+                    checkCrashed(chicken1, ammo1);
+                }
+            }
 
             ammo.showAmmo();
             ammo.moveAmmo(5);
+
+            fill(255);
+            textSize(32);
+            text("Life: " + playerLife, 10, 40);
+            text("score: " + (killedChicken * 15 + frameCount / 5), 10, 100);
         }
     }
 
