@@ -12,6 +12,8 @@ public class Main extends PApplet {
     final Rocket rocket = new Rocket();
 
     final Chicken chicken = new Chicken(null, 0, 0, 0);
+    final Ammo ammo = new Ammo(null, 0, 0);
+
 
 
     //    variables
@@ -24,6 +26,8 @@ public class Main extends PApplet {
     PImage gameBG;
 
     public static ArrayList<Chicken> chickenArrayList = new ArrayList<>();
+    public static ArrayList<Ammo> ammoArrayList = new ArrayList<>();
+
 
 
     public void settings() {
