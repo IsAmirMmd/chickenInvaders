@@ -131,6 +131,8 @@ public class Main extends PApplet {
             gameOverWindow(killedChicken * 15 + loseScore);
         } else if (!onMenu && helpCent) {
             helpCenter();
+        } else if (!onMenu && winGame) {
+            winnerWindow(loseScore);
         }
     }
 
@@ -182,6 +184,29 @@ public class Main extends PApplet {
             }
         }
 
+    }
+
+    public void winnerWindow(int score) {
+        textAlign(3, 3);
+
+        PImage gameOver = loadImage("CI1RLogo.png");
+
+        image(gameOver, 250, 150, 400, 200);
+
+        text("score :" + score, WINDOW_WIDTH / 2, 300);
+
+        text("1 - Score List", WINDOW_WIDTH / 2, 360);
+        text("2 - Exit", 410, 425);
+        if (mousePressed) {
+            if (mouseX > 367 && mouseX < 600 && mouseY > 350 && mouseY < 390) {
+                text("test-score", 100, 100);
+//                score list
+            } else if (mouseX > 367 && mouseX < 500 && mouseY > 410 && mouseY < 450) {
+                text("exit", 152, 200);
+                exit();
+            }
+        }
+        textAlign(1, 1);
     }
 
     @Override
