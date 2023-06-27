@@ -2,7 +2,7 @@ import processing.core.*;
 
 import java.util.ArrayList;
 
-public class Chicken extends PApplet {
+public class Chicken extends PApplet implements ChickenInterfaces {
     public static ArrayList<Chicken> chickens = new ArrayList<>();
 
     private float speedY = -50;
